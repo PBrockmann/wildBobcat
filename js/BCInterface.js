@@ -10,11 +10,6 @@
  ##########################################################################
  */
 
-Proj4js.defs["EPSG:32661"] = "+proj=stere +lat_0=90 +lat_ts=90 +lon_0=0 +k=0.994 +x_0=2000000 +y_0=2000000 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
-Proj4js.defs["EPSG:32761"] = "+proj=stere +lat_0=-90 +lat_ts=-90 +lon_0=0 +k=0.994 +x_0=2000000 +y_0=2000000 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
-Proj4js.defs["EPSG:3857"]  = "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs";
-Proj4js.defs["EPSG:54009"] = "+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs";
-
 var BCInterface = Class.create( {
 
     initialize: function()
@@ -39,15 +34,13 @@ var BCInterface = Class.create( {
  	this.timeArray = Array();
         this.elevationArray = Array();
 
-        this.maxBounds = Array();
-        //this.maxBounds[0] = [-180,-90,180,90];
-        this.maxBounds[0] = [-20037508.34, -20037508.34, 20037508.34, 20037508.34];
-        this.maxBounds[1] = [-9E6,-9E6,9E6,9E6];
-        this.maxBounds[2] = [-2E7,-2E7,2E7,2E7];
-
+	this.mapsNumber = $( "#mapsNumberSelect" ).val();
+     
         this.bindTools();
         this.createSliders();
         this.bindVariable();
+	this.bindNumberMaps();
+	this.bindPalettes();
         this.bindRange();
         this.resizePrintable();
 
@@ -68,22 +61,19 @@ var BCInterface = Class.create( {
             this.centerMap = firstOpenLayerMap.getCenter();
             this.zoomMap = firstOpenLayerMap.getZoom();
         }
-        var projectionIndex = $( "#projection" ).prop( 'selectedIndex' );
 	var mapTitle = this.basename( this.resourceDiv.val()[0] ).split( '.' )[0] + ' / ' + this.variableDiv.val();
 
         var options = {container: $( '#printable' ),
             id: id,
             mapTitle: mapTitle,
             projection: $( "#projection" ).val(),
-            projectionBounds: this.maxBounds[projectionIndex],
-	    projectionIndex: projectionIndex,
             resource: this.resourceDiv.val()[0],
             variable: this.variableDiv.val(),
             time: this.timeDiv.val(),
             elevation: this.elevationDiv.val(),
             range: $( "#slider-range-text" ).val().replace(/[\]\[]/g,''),
             numberColorsBands: $( "#slider-nbcolorbands-text" ).val(),
-            style: $( "#palette" ).val(),
+            palette: $( "#palette" ).val(),
             centerMap: this.centerMap,
             zoomMap: this.zoomMap,
             minx: this.minx,
@@ -102,7 +92,8 @@ var BCInterface = Class.create( {
         this.selectBobcat( this.selectedBobcat.id );
 
         // Bind events
-        this.selectedBobcat.map.events.register( "moveend", this.selectedBobcat.map, jQuery.proxy( this.synchronizeMaps, [this, this.selectedBobcat.map] ), false );
+	this.selectedBobcat.map.events.register( "zoomend", this.selectedBobcat.map, jQuery.proxy( this.handleZoom, this.selectedBobcat.map ), true );
+	this.selectedBobcat.map.events.register( "moveend", this.selectedBobcat.map, jQuery.proxy( this.synchronizeMaps, [this, this.selectedBobcat.map] ), false );
 	this.selectedBobcat.map.events.register( "touchend", this.selectedBobcat.map, jQuery.proxy( function( arguments )
         {
             this.selectBobcat( arguments.object.div.id );
@@ -121,6 +112,31 @@ var BCInterface = Class.create( {
         $( ".BCmap" ).removeClass( "selected" );
 	if( this.selectedBobcat )
         	$( "#" + this.selectedBobcat.id ).addClass( "selected" );
+    },
+
+    handleZoom: function()
+    {
+    switch( this.getZoom() )
+    {
+    	case 0:
+    		$( ".olControlZoomIn" ).css( "pointer-events", "auto" );
+    		$( ".olControlZoomIn" ).css( "background-color", "" );
+    		$( ".olControlZoomOut" ).css( "pointer-events", "none" );
+    		$( ".olControlZoomOut" ).css( "background-color", "#8F8F8F" );
+    		//$(".olControlZoomOut").css("opacity", "0.4"); // Could have been used but nicer with background-color
+    		break;
+    	case 7: // 8 levels
+    		$( ".olControlZoomIn" ).css( "pointer-events", "none" );
+    		$( ".olControlZoomIn" ).css( "background-color", "#8F8F8F" );
+    		$( ".olControlZoomOut" ).css( "pointer-events", "auto" );
+    		$( ".olControlZoomOut" ).css( "background-color", "" );
+    		break;
+    	default:
+    		$( ".olControlZoomIn" ).css( "pointer-events", "auto" );
+    		$( ".olControlZoomIn" ).css( "background-color", "" );
+    		$( ".olControlZoomOut" ).css( "pointer-events", "auto" );
+    		$( ".olControlZoomOut" ).css( "background-color", "" );
+    	}
     },
 
     /**
@@ -151,15 +167,22 @@ var BCInterface = Class.create( {
 
     resizeMaps: function( widthForMaps )
     {
-        var newWidth = Math.round( Math.max( widthForMaps / this.hashBobcats.keys().length, widthForMaps / this.selectMapsNumber.getValue() ) ) - 25;
-        var linesNumber = Math.ceil( this.hashBobcats.keys().length / this.selectMapsNumber.getValue() );
-        var newHeight = (this.printableInitHeight / linesNumber) - 30;
-        this.hashBobcats.each( jQuery.proxy( function( key )
-        {
-            $( "#" + key ).css( "width", newWidth + "px" );
-            $( "#" + key ).css( "height", newHeight + "px" );
-            this.hashBobcats.get( key ).resizeMap();
-        }, this ) );
+
+	if( 1 > this.hashBobcats.keys().length )
+		return;
+
+	var newWidth = Math.round( Math.max( widthForMaps / this.hashBobcats.keys().length, widthForMaps / this.mapsNumber ) ) - 3 * this.mapsNumber;
+	var newWidth = Math.round( newWidth / 4 ) * 4; // Prepare map width to host 4 tiles
+
+	var linesNumber = Math.ceil( this.hashBobcats.keys().length / this.mapsNumber );
+	var newHeight = (this.printableInitHeight / linesNumber) - 30;
+	this.hashBobcats.each( jQuery.proxy( function( key )
+	{
+		$( "#" + key ).css( "width", newWidth + "px" );
+		$( "#" + key ).css( "height", newHeight + "px" );
+		this.hashBobcats.get( key ).resizeMap();
+	}, this ) );
+
     },
 
     onClickDeleteMap:function( id )
@@ -548,9 +571,6 @@ var BCInterface = Class.create( {
         else
             step = Math.floor( step / 10 ) * 10;
 
-        // TODO : voir si on enlève les update des min/max ici ou si on les update lors d'une modif de $( "#slider-range-text" ) désormais éditable
-        //$( "#slider-range" ).slider( "option", "min", min );
-        //$( "#slider-range" ).slider( "option", "max", max );
         $( "#slider-range" ).slider( "option", "step", step );
         $( "#slider-range" ).slider( "option", "values", [min,max] );
         $( "#slider-range-text" ).val( '[' + $( "#slider-range" ).slider( "values", 0 ) + "," + $( "#slider-range" ).slider( "values", 1 ) + ']' );
@@ -627,6 +647,30 @@ var BCInterface = Class.create( {
         $( "#slider-nbcolorbands-text" ).val( $( "#slider-nbcolorbands" ).slider( "value" ) );
     },
 
+
+// **************************************************************
+// *********************** NUMBER MAPS **************************
+// **************************************************************
+	bindNumberMaps: function()
+	{
+		$( "#selectMapsNumber" ).on( 'click', jQuery.proxy( function( event )
+		{
+			this.mapsNumber = $( "#selectMapsNumber" ).val();
+			this.resizeAllMaps();
+		}, this ) );
+	},
+
+// **************************************************************
+// *********************** PALETTES ****************************
+// **************************************************************
+	bindPalettes: function()
+	{
+		$( "#palette" ).on( 'click', jQuery.proxy( function( event )
+		{
+			this.palette = $( "#palette" ).val();
+			this.updateLegend();
+		}, this ) );
+	},
 
 // **************************************************************
 // ************************* BIND *******************************

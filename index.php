@@ -3,24 +3,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Wild Bobcat</title>
 
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jquery.class.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
     <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="Stylesheet"/>
-    <link type="text/css" href="css/select.css" rel="stylesheet"/>
-    <link type="text/css" href="css/BCInterface.css" rel="stylesheet"/>
-    <link type="text/css" href="css/contextmenu.css" rel="stylesheet"/>
-    <link type="text/css" href="css/Bobcat.css" rel="stylesheet"/>
 
     <script type="text/javascript" src="js/OpenLayers-2.12/OpenLayers.js"></script>
-    <script type="text/javascript" src="js/proj4js/lib/proj4js-compressed.js"></script>
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
-    <script type="text/javascript" src="js/jquery.class.js"></script>
     <script type="text/javascript" src="js/jshashtable-2.1.js"></script>
+    <script type="text/javascript" src="js/anytime.js"></script>
+
     <script type="text/javascript" src="js/Select.js"></script>
+    <link type="text/css" href="css/select.css" rel="stylesheet"/>
 
     <script type="text/javascript" src="js/BCInterface.js"></script>
-    <script type="text/javascript" src="js/anytime.js"></script>
-    <script type="text/javascript" src="js/contextmenu.js"></script>
-    <script type="text/javascript" src="js/Bobcat.js"></script>
+    <link type="text/css" href="css/BCInterface.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="Bobcat.js"></script>
+    <link type="text/css" href="Bobcat.css" rel="stylesheet"/>
 
 </HEAD>
 
@@ -52,9 +51,10 @@
                 </div>
                 <div id="ProjectionContent" class="containerContent">
                     <select id='projection' size='3'>
-                        <option value="EPSG:3857" selected>Mercator</option>
-                        <option value="EPSG:32661">North Polar Stereographic</option>
-                        <option value="EPSG:32761">South Polar Stereographic</option>
+			<option value="EPSG:4087">World Equidistant Cylindrical</option>
+			<option value="EPSG:3857" selected>Pseudo-Mercator</option>
+			<option value="EPSG:3408">EASE-Grid North</option>
+			<option value="EPSG:3409">EASE-Grid South</option>
                     </select>
                 </div>
             </div>
@@ -157,7 +157,9 @@
 		<div class="hideOrShowToolsContent"><img src="img/grabber.png"/></div>
         </div>
     </div>
+
     <div id="printable"></div>
+
 </div>
 
 <script type="text/javascript">

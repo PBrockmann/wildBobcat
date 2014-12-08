@@ -5,7 +5,7 @@
    .maximizeDiv { 	/* do no print Maximize icon of OpenLayers.Control.LayerSwitcher */
         display: none;
     }
-   .olControlZoom { 	/* do no print Maximize icon of OpenLayers.Control.Zoom */
+   .olControlZoom, .BCmaxExtentClass { 	/* do no print Maximize icon of OpenLayers.Control.Zoom */
         display: none;
     }
 }
@@ -24,6 +24,29 @@
     float: left;
     width: 100%;
     height: 100%;
+}
+
+.BCmaxExtentClass
+{
+   background-image: url("img/maximize.png");
+   width: 20px;
+   height: 20px;
+   position:relative;
+   top: 85px;
+   left: 13px;
+   z-index: 1000;
+   cursor:pointer;
+}
+
+.BCadviseZoomMaxClass {
+    height: 19px;
+    left: 13px;
+    position: relative;
+    top: 21px;
+    width: 20px;
+    z-index: 1000;
+    background-image:  url("img/maximize.png");
+    opacity: 0;
 }
 
 .BCmap.selected {
@@ -52,6 +75,7 @@
     text-align: center;
     font-weight: bold;
     margin-right: 4px;
+    font-size: 12px;
 }
 
 .BCmapTitleIconeMenu {
@@ -68,11 +92,22 @@
 /**************************************************************/
 /************************* LEGEND *****************************/
 /**************************************************************/
+.complexToolTip {
+    z-index: 2000;
+}
+
+/**************************************************************/
+/************************* LEGEND *****************************/
+/**************************************************************/
 .BClegend {
     z-index: 1000;
     float: right;
     position: relative;
     display: none;
+    border: 1px dotted #464646;
+    background-color: rgba(200,200,200,0.6);
+    border-radius: 5px;
+    padding: 0 5px;
 }
 
 /**************************************************************/
