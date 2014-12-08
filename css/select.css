@@ -1,0 +1,64 @@
+/* ********************************************* */
+/* **************** SELECT ********************* */
+/* ********************************************* */
+.select_container {
+    height: 20px;
+}
+
+.select_selectLeft {
+    background: url(../img/select_left.gif) no-repeat top left;
+    height: 20px;
+    width: 6px;
+    float: left;
+}
+
+.select_selectMiddle {
+    background: transparent url(../img/select_middle.gif) repeat-x;
+    height: 20px;
+    float: left;
+    font-size: 12px;
+    color: #70739C;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 18px;
+    padding-right: 7px;
+    padding-left: 2px;
+}
+
+.select_selectRight {
+    background: url(../img/select_right.gif) no-repeat top right;
+    height: 20px;
+    width: 20px;
+    float: left;
+}
+
+/* ********************************************* */
+/* **************** CHOICE ********************* */
+/* ********************************************* */
+.select_choicelist {
+    background-color: #ffffff;
+    display: none;
+    z-index: 15;
+    margin-top: -3px;
+    position: absolute; /* Hack IE6 and IE7 */
+    font-size: 12px;
+    color: #70739C;
+    overflow: hidden;
+    border: 1px solid #C0C0C0;
+}
+
+.select_item_middle {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 25px;
+}
+
+.select_item_middle:hover {
+    background-color: #70739C;
+    color: #E1DEF1;
+}
+
+.select_item_middle:active {
+    background-color: #04155D;
+}
