@@ -34,10 +34,8 @@ var BCInterface = Class.create( {
  	this.timeArray = Array();
         this.elevationArray = Array();
 
-	this.mapsNumber = $( "#mapsNumberSelect" ).val();
-     
-        this.bindTools();
         this.createSliders();
+        this.bindTools()
         this.bindVariable();
 	this.bindNumberMaps();
 	this.bindPalettes();
@@ -171,6 +169,7 @@ var BCInterface = Class.create( {
 	if( 1 > this.hashBobcats.keys().length )
 		return;
 
+	this.mapsNumber = this.selectMapsNumber.getValue();
 	var newWidth = Math.round( Math.max( widthForMaps / this.hashBobcats.keys().length, widthForMaps / this.mapsNumber ) ) - 3 * this.mapsNumber;
 	var newWidth = Math.round( newWidth / 4 ) * 4; // Prepare map width to host 4 tiles
 
@@ -655,7 +654,7 @@ var BCInterface = Class.create( {
 	{
 		$( "#selectMapsNumber" ).on( 'click', jQuery.proxy( function( event )
 		{
-			this.mapsNumber = $( "#selectMapsNumber" ).val();
+			this.mapsNumber = this.selectMapsNumber.getValue();
 			this.resizeAllMaps();
 		}, this ) );
 	},
