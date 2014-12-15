@@ -1,8 +1,3 @@
-/* Pb with bootstrap */
-* {
-    box-sizing: content-box !important;
-}
-
 @media print {
     .BCmapTitleIconeMenu {
         display: none;
@@ -68,7 +63,7 @@
 .BCmapTitle {
     background-color: #EEEEEE;
     padding: 6px 3px 6px 6px;
-    height: 30px;
+    height: 42px;
 }
 
 .BCmapSubTitle, .BCmapSubTitleShort {
