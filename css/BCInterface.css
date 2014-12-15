@@ -195,22 +195,8 @@ select {
 }
 
 .tool button {
-    height: 34px;
+    height: 20px;
 }
-
-/*#submitCreateMap, #submitDeleteMaps, #submitShowAllLegends, #submitHideAllLegends {*/
-/*height: 24px;*/
-/*}*/
-
-/*#submitcreate[disabled], #submitcreate[disabled]:hover, #submitShowAllLegends[disabled], #submitShowAllLegends[disabled]:hover, #submitHideAllLegends[disabled], #submitHideAllLegends[disabled]:hover {*/
-/*background: -moz-linear-gradient(center top, #7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); *//* FF3.6+ */
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc6c3), color-stop(24%, #828c95), color-stop(41%, #000000), color-stop(100%, #7f7f7f)); *//* Chrome, Safari4 + */
-/*background: -webkit-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); *//* Chrome10+,Safari5.1+ */
-/*background: -o-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); *//* Opera 11.10+ */
-/*background: linear-gradient(#7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); *//* W3C */
-/*color: white;*/
-/*opacity: 0.4;*/
-/*}*/
 
 /**************************************************************/
 
@@ -223,6 +209,3 @@ select {
 .ui-icon-gripsmall-diagonal-se {
     background-position: -82px -224px;
 }
-
-
-

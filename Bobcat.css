@@ -1,5 +1,6 @@
+/* Pb with bootstrap */
 * {
-    box-sizing: unset !important;
+    box-sizing: content-box !important;
 }
 
 @media print {
