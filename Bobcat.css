@@ -1,11 +1,19 @@
+* {
+    box-sizing: unset !important;
+}
+
 @media print {
     .BCmapTitleIconeMenu {
         display: none;
     }
-   .maximizeDiv { 	/* do no print Maximize icon of OpenLayers.Control.LayerSwitcher */
+
+    .maximizeDiv {
+    /* do no print Maximize icon of OpenLayers.Control.LayerSwitcher */
         display: none;
     }
-   .olControlZoom, .BCmaxExtentClass { 	/* do no print Maximize icon of OpenLayers.Control.Zoom */
+
+    .olControlZoom, .BCmaxExtentClass {
+    /* do no print Maximize icon of OpenLayers.Control.Zoom */
         display: none;
     }
 }
@@ -15,9 +23,9 @@
 /**************************************************************/
 .olMap {
     border: 1px solid black;
-    padding: 0 0 25px 0 !important;
-/*  padding: 0 0 42px 0 !important;  */    /* avec test 400x400 */
-    margin:1px;
+    padding: 0 0 25px 0 !important; /*  padding: 0 0 42px 0 !important;  */
+/* avec test 400x400 */
+    margin: 1px;
 }
 
 .BCmap {
@@ -26,16 +34,15 @@
     height: 100%;
 }
 
-.BCmaxExtentClass
-{
-   background-image: url("img/maximize.png");
-   width: 20px;
-   height: 20px;
-   position:relative;
-   top: 85px;
-   left: 13px;
-   z-index: 1000;
-   cursor:pointer;
+.BCmaxExtentClass {
+    background-image: url("img/maximize.png");
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 85px;
+    left: 13px;
+    z-index: 1000;
+    cursor: pointer;
 }
 
 .BCadviseZoomMaxClass {
@@ -45,7 +52,7 @@
     top: 21px;
     width: 20px;
     z-index: 1000;
-    background-image:  url("img/maximize.png");
+    background-image: url("img/maximize.png");
     opacity: 0;
 }
 
@@ -105,7 +112,7 @@
     position: relative;
     display: none;
     border: 1px dotted #464646;
-    background-color: rgba(200,200,200,0.6);
+    background-color: rgba(200, 200, 200, 0.6);
     border-radius: 5px;
     padding: 0 5px;
 }
@@ -143,7 +150,6 @@
 .BCIconeForMenuTitle:hover {
     color: deepskyblue;
 }
-
 
 /* ******************************************************** */
 /* ************************* CONTAINER ******************** */
@@ -188,7 +194,6 @@
     padding: 3px 8px;
     margin-top: 5px;
 }
-
 
 /* ******************************************************** */
 /* ************************* OPENLAYER ******************** */
