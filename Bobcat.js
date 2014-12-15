@@ -531,7 +531,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_landMask",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
@@ -548,7 +548,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_oceanMask",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
@@ -565,11 +565,11 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_frontiersCountryAndRegions",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
-            visibility: true 
+            visibility: true
         } );
     },
 
@@ -582,7 +582,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_labelsCountriesRegionsOceans",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
@@ -600,7 +600,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_graticules01_05_10",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
@@ -617,7 +617,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_citiesLabelsAndFrontiers",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,
@@ -635,7 +635,7 @@ var Bobcat = Class.create( {
             VERSION: '1.1.1',
             LAYERS: "GCA:GCA_lakesAndRivers",
             transparent: true,
-            FORMAT: 'image/png',
+            FORMAT: 'image/png'
         }, {
             isBaseLayer: false,
             opacity: 1,

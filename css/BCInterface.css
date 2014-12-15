@@ -49,12 +49,14 @@ select {
 /* ******************************************************** */
 /* *********************** CONTAINER ********************** */
 /* ******************************************************** */
-.container {
+.containerMenu {
     -moz-border-radius: 4px 4px 4px 4px;
     -moz-box-shadow: 0 0 4px rgba(101, 152, 30, 1);
     -webkit-border-radius: 4px 4px 4px 4px;
     -webkit-box-shadow: 0 0 4px rgba(101, 152, 30, 1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 8px;
+    min-width: 264px;
 }
 
 .containerTitle {
@@ -68,6 +70,10 @@ select {
     color: #666666;
     text-align: center;
     min-width: 90px;
+}
+
+.containerTitle {
+    padding-left: 5px;
 }
 
 .containerTitleText {
@@ -109,16 +115,6 @@ select {
     color: #CD0A0A;
 }
 
-.container {
-    margin-bottom: 8px;
-    min-width: 264px;
-}
-
-.containerTitle {
-    padding-left: 5px;
-    width: 99%;
-}
-
 .mapsNumber {
     float: left;
     margin-top: 2px;
@@ -146,8 +142,8 @@ select {
     width: 120px;
 }
 
-#VariableContainer[disabled] .containerTitle, 
-#ElevationContainer[disabled] .containerTitle, 
+#VariableContainer[disabled] .containerTitle,
+#ElevationContainer[disabled] .containerTitle,
 #TimeContainer[disabled] .containerTitle {
     opacity: 0.4;
 }
@@ -157,7 +153,7 @@ select {
 }
 
 #LegendContent {
-    min-height: 230px;
+    min-height: 250px;
     padding-bottom: 10px;
 }
 
@@ -174,9 +170,15 @@ select {
     top: 2px;
 }
 
+#getRange {
+    height: 23px;
+    padding: 0 5px;
+    margin: -2px 4px 0 19px;
+}
+
 /************************* BUTTONS ******************************/
 .containerButtons {
-    margin-bottom: 56px;
+    margin-bottom: 65px;
 }
 
 .lonelyTool {
@@ -188,55 +190,12 @@ select {
 }
 
 .tool {
-    background: -moz-linear-gradient(center top, #7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc6c3), color-stop(24%, #828c95), color-stop(41%, #000000), color-stop(100%, #7f7f7f));
-    background: -webkit-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%);
-    background: -o-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%);
-    background: linear-gradient(#7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%);
-    -moz-border-radius: 9px;
-    -moz-box-shadow: 0 0 4px rgba(101, 152, 30, 1);
-    -webkit-border-radius: 9px;
-    -webkit-box-shadow: 0 0 4px rgba(101, 152, 30, 1);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-    margin: 5px 0;
-    padding: 3px 11px;
-    text-align: center;
-    border-right: 1px solid #DDDDDD;
-    border-right-width: 2px;
-    color: #666666;
-    font-weight: 500;
     float: left;
-    height: 30px;
-    min-width: auto;
+    margin: 9px 0 0 3px;
 }
 
-.tool:hover, .toolHover, .tool.selected {
-    color: #DDDDDD;
-    font-weight: 550;
-    background: -moz-linear-gradient(center top, #FFFFFF -200%, #7F7F7F 80%, #FFFFFF 197%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc6c3), color-stop(24%, #828c95), color-stop(41%, #000000), color-stop(100%, #7f7f7f));
-    background: -webkit-linear-gradient(top, #FFFFFF -70%, #7F7F7F 67%, #FFFFFF 113%);
-    background: -o-linear-gradient(top, #FFFFFF -200%, #7F7F7F 80%, #FFFFFF 197%);
-    background: linear-gradient(#FFFFFF -200%, #7F7F7F 80%, #FFFFFF 197%);
-}
-
-#submitCreateMap, #submitDeleteMaps, #submitShowAllLegends, #submitHideAllLegends {
-    height: 24px;
-    margin-left: 5px;
-}
-
-#submitDeleteMaps .lonelyToolIcone {
-    margin-top: 4px;
-}
-
-#submitcreate[disabled], #submitcreate[disabled]:hover, #submitShowAllLegends[disabled], #submitShowAllLegends[disabled]:hover, #submitHideAllLegends[disabled], #submitHideAllLegends[disabled]:hover {
-    background: -moz-linear-gradient(center top, #7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc6c3), color-stop(24%, #828c95), color-stop(41%, #000000), color-stop(100%, #7f7f7f)); /* Chrome, Safari4 + */
-    background: -webkit-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); /* Opera 11.10+ */
-    background: linear-gradient(#7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); /* W3C */
-    color: white;
-    opacity: 0.4;
+.tool button {
+    height: 34px;
 }
 
 /**************************************************************/
@@ -250,6 +209,3 @@ select {
 .ui-icon-gripsmall-diagonal-se {
     background-position: -82px -224px;
 }
-
-
-
